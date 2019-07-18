@@ -1,25 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] GameObject deathFX;
-    [SerializeField] int scorePerHit = 25;
+    [SerializeField] ParticleSystem deathFX;
+    [SerializeField] int scorePerHit;
 
     scoreBoard sb;
 
     // Start is called before the first frame update
     void Start()
     {
-        deathFX.SetActive(false);
         sb = FindObjectOfType<scoreBoard>();
-    }
-
-    void OnParticelCollision(GameObject other)
-    {
-        Destroy(gameObject);
-        Instantiate(deathFX, transform.position, Quaternion.identity);
     }
 
     // Update is called once per frame
@@ -28,7 +22,7 @@ public class Enemy : MonoBehaviour
 
     }
 
-    void OnParticleCollision(GameObject other)
+    void OnParticleCollision (GameObject other)
     {
         sb.ScoreHit(scorePerHit);
         Destroy(gameObject);

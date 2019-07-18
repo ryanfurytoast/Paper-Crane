@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class scoreBoard : MonoBehaviour
 {
-    int score;
+    int score = 0;
     Text scoreText;
 
     // Use this for initialization
@@ -20,10 +21,18 @@ public class scoreBoard : MonoBehaviour
         scoreText.text = score.ToString();
     }
 
+    public void checkScore()
+    {
+        if (score == 100)
+        {
+           SceneManager.LoadScene(3);
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
-
+        checkScore();
     }
 }
 
